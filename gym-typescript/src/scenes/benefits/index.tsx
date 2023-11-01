@@ -1,41 +1,16 @@
 import HText from "@/shared/HText";
 import { BenefitType, SELECTED_PAGE } from "@/shared/types";
-import {
-  HomeModernIcon,
-  UserGroupIcon,
-  AcademicCapIcon,
-} from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
 import Benefit from "./Benefit";
 import BenefitsPageGraphic from "@/assets/BenefitsPageGraphic.png";
 import ActionButton from "@/shared/ActionButton";
+import { benefits } from "../../shared/content";
 
 type Props = {
   setSelectedPage: (value: SELECTED_PAGE) => void;
 };
 
 const Benefits = ({ setSelectedPage }: Props) => {
-  const benefits: Array<BenefitType> = [
-    {
-      icon: <HomeModernIcon className="h-6 w-6" />,
-      title: "State of the Art Facilities",
-      description:
-        "To stay on top of your fitness goals, you need to be self-motivated, and for those times self-motivation doesn't work",
-    },
-    {
-      icon: <UserGroupIcon className="h-6 w-6" />,
-      title: "100's of Diverse Classes",
-      description:
-        "To stay on top of your fitness goals, you need to be self-motivated, and for those times self-motivation doesn't work",
-    },
-    {
-      icon: <AcademicCapIcon className="h-6 w-6" />,
-      title: "Dedicated Pro Trainers",
-      description:
-        "To stay on top of your fitness goals, you need to be self-motivated, and for those times self-motivation doesn't work",
-    },
-  ];
-
   const container = {
     hidden: {},
     visible: {
@@ -139,14 +114,24 @@ const Benefits = ({ setSelectedPage }: Props) => {
             </motion.div>
 
             {/* BUTTON */}
-            <div className="relative mt-16">
-              <div className="before:absolute before:-bottom-20 before:right-40 before:z-[-1] before:content-sparkles">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 1.5 }}
+              variants={{
+                hidden: { opacity: 0, x: 50 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              className="relative mt-16"
+            >
+              <div className="before:absolute before:-bottom-20 before:right-40 before:z-[-1] sm:before:content-sparkles">
                 {" "}
                 <ActionButton setSelectedPage={setSelectedPage}>
                   Join Now
                 </ActionButton>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>
